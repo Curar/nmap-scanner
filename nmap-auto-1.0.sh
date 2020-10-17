@@ -36,6 +36,7 @@ fi
 nmap_s="nmap"
 nmap_g="nmap -sS -v -O"
 wynik_s="wynik.txt"
+data="`date`"
 
 echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 read ADRES_IP
@@ -49,13 +50,16 @@ do
 			echo -e "\e[32m Rozpoczynam skanowanie SZYBKIE dla adresu/domeny : $ADRES_IP\e[0m"
 			if (($EUID)); then {
 			echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
-			date > $wynik_s
+			echo "Data skanowania: $data" > $wynik_s
+			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 
 			sudo $nmap_s $ADRES_IP >> $wynik_s
 			cat $wynik_s
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
 			}
-			else {
-			date > $wynik_s
+			else {			
+			echo "Data skanowania: $data" > $wynik_s
+			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 
+			sudo $nmap_s $ADRES_IP >> $wynik_s
 			$nmap_s $ADRES_IP >> $wynik_s
 			cat $wynik_s	
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
@@ -67,13 +71,15 @@ do
 			echo -e "\e[32m Rozpoczynam skanowanie GŁĘBOKIE dla adresu/domeny : $ADRES_IP\e[0m"	
 			if (($EUID)); then {	
 			echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
-			date > $wynik_s
+			echo "Data skanowania: $data" > $wynik_s
+			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 	
 			sudo $nmap_g $ADRES_IP >> $wynik_s
 			cat $wynik_s
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
 			}
 			else {
-			date > $wynik_s
+			echo "Data skanowania: $data" > $wynik_s
+			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 
 			$nmap_g $ADRES_IP >> $wynik_s
 			cat $wynik_s
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
