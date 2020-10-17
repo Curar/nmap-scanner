@@ -26,8 +26,10 @@ do
 			nmap $ADRES_IP
 		;;
 		"GLEBOKIE") 
-			echo "Rozpoczynam skanowanie GŁĘBOKIE dla adresu : $ADRES_IP"
-			nmap $ADRES_IP
+			echo -e "\e[32m Rozpoczynam skanowanie GŁĘBOKIE dla adresu : $ADRES_IP\e[0m"
+			sudo nmap -sS -v -O $ADRES_IP > wynik.txt
+			cat wynik.txt
+			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
 		;;
 	*) echo "Brak wyboru !"
 	esac
