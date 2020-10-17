@@ -17,6 +17,8 @@ echo -e "\e[32m========================================================\e[0m"
 echo ""
 echo ""
 echo -e "\e[33mDZIEŃ DOBRY\e[0m"
+sleep 5
+clear
 if grep -qi Arch /etc/issue 
 	then
 		echo -e "\e[32mWykryłem ,że masz Arch Linux\e[0m"
