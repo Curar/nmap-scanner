@@ -51,14 +51,14 @@ do
 			if (($EUID)); then {
 			echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
 			echo "Data skanowania: $data" > $wynik_s
-			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 
+			echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
 			sudo $nmap_s $ADRES_IP >> $wynik_s
 			cat $wynik_s
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
 			}
 			else {			
 			echo "Data skanowania: $data" > $wynik_s
-			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 
+			echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
 			sudo $nmap_s $ADRES_IP >> $wynik_s
 			$nmap_s $ADRES_IP >> $wynik_s
 			cat $wynik_s	
@@ -72,14 +72,14 @@ do
 			if (($EUID)); then {	
 			echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
 			echo "Data skanowania: $data" > $wynik_s
-			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 	
+			echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
 			sudo $nmap_g $ADRES_IP >> $wynik_s
 			cat $wynik_s
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
 			}
 			else {
 			echo "Data skanowania: $data" > $wynik_s
-			echo "Skanowałeś : $ADRES_IP" >> $wynik_s 
+			echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
 			$nmap_g $ADRES_IP >> $wynik_s
 			cat $wynik_s
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"

@@ -1,20 +1,8 @@
-Data skanowania: nie, 18 paź 2020, 00:06:41 CEST
-Skanowałeś : 127.0.0.1
-Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-18 00:06 CEST
-Initiating Parallel DNS resolution of 1 host. at 00:06
-Completed Parallel DNS resolution of 1 host. at 00:06, 0.00s elapsed
-Initiating SYN Stealth Scan at 00:06
-Scanning localhost (127.0.0.1) [1000 ports]
-Completed SYN Stealth Scan at 00:06, 0.12s elapsed (1000 total ports)
-Initiating OS detection (try #1) against localhost (127.0.0.1)
-Retrying OS detection (try #2) against localhost (127.0.0.1)
+Data skanowania: nie, 18 paź 2020, 00:10:07 CEST
+Skanowałeś następujący cel : 127.0.0.1
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-18 00:10 CEST
 Nmap scan report for localhost (127.0.0.1)
-Host is up (0.000049s latency).
+Host is up (0.000010s latency).
 All 1000 scanned ports on localhost (127.0.0.1) are closed
-Too many fingerprints match this host to give specific OS details
-Network Distance: 0 hops
 
-Read data files from: /usr/bin/../share/nmap
-OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 2.57 seconds
-           Raw packets sent: 1018 (46.028KB) | Rcvd: 2026 (86.896KB)
+Nmap done: 1 IP address (1 host up) scanned in 0.18 seconds
