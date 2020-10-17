@@ -14,7 +14,7 @@ echo -e "\e[32m                       | |                             \e[0m"
 echo -e "\e[32m                       |_|                             \e[0m"
 echo -e "\e[32m========================================================\e[0m"
 
-echo -e "\e[32m Podaj adres IPv4 :\e[0m"
+echo -e "\e[32m Podaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 read ADRES_IP
 
 echo -e "\e[32m Jakie skanowanie przeprowadzić ? :\e[0m"
@@ -22,11 +22,13 @@ select WYBOR in SZYBKIE GLEBOKIE
 do
 	case $WYBOR in
 		"SZYBKIE") 
-			echo "Rozpoczynam skanowanie SZYBKIE dla adresu : $ADRES_IP"
-			nmap $ADRES_IP
+			echo -e "\e[32m Rozpoczynam skanowanie SZYBKIE dla adresu/domeny : $ADRES_IP\e[0m"
+			sudo nmap $ADRES_IP > wynik.txt
+			cat wynik.txt
+			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
 		;;
 		"GLEBOKIE") 
-			echo -e "\e[32m Rozpoczynam skanowanie GŁĘBOKIE dla adresu : $ADRES_IP\e[0m"
+			echo -e "\e[32m Rozpoczynam skanowanie GŁĘBOKIE dla adresu/domeny : $ADRES_IP\e[0m"
 			sudo nmap -sS -v -O $ADRES_IP > wynik.txt
 			cat wynik.txt
 			echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
