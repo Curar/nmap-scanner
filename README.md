@@ -1,1 +1,1 @@
-# Skrypt wykorzystujący program nmap https://nmap.org , ulatwiający procesy skanowania sieci lub domeny.
+# Skrypt wykorzystujący program nmap https://nmap.org , ułatwiający procesy skanowania sieci lub domeny.
