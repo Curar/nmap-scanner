@@ -36,10 +36,10 @@ fi
 nmap_s="nmap"
 nmap_g="nmap -sS -v -O"
 
-echo -e "\e[32m Podaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
+echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 read ADRES_IP
 
-echo -e "\e[32m Jakie skanowanie przeprowadzić ? :\e[0m"
+echo -e "\e[32mJakie skanowanie przeprowadzić ? :\e[0m"
 select WYBOR in SZYBKIE GLEBOKIE
 do
 	case $WYBOR in
