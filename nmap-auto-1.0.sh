@@ -19,6 +19,22 @@ echo ""
 echo -e "\e[33mDZIEŃ DOBRY\e[0m"
 sleep 5
 clear
+
+# Definicja zmiennych używanych w skrypcie
+nmap_s="nmap"
+nmap_g="nmap -sS -sU -v -O"
+wynik_s="wynik.txt"
+data="`date`"
+
+# Defincja funkcji używanych w skrypcie
+function pauza() {
+	echo -e "\e[33m********************************************\e[0m"
+	echo -e "\e[33m  Skanowanie celu $ADRES_IP zakończone      \e[0m"
+        echo -e "\e[33m********************************************\e[0m"
+	echo ""	
+	read -p "Naduś klawisz ENTER aby kontynować ..."
+	}
+
 if grep -qi Arch /etc/issue 
 	then
 		echo -e "\e[32mWykryłem ,że masz Arch Linux\e[0m"
@@ -86,20 +102,8 @@ if grep -qi Arch /etc/issue
 		}
 		fi
 fi
-sleep 5
-# Zmienne
-nmap_s="nmap"
-nmap_g="nmap -sS -sU -v -O"
-wynik_s="wynik.txt"
-data="`date`"
 
-function pauza {
-	echo -e "\e[33m********************************************\e[0m"
-	echo -e "\e[33m* Skanowanie celu $ADRES_IP zakończone     *\e[0m"
-        echo -e "\e[33m********************************************\e[0m"
-	echo ""	
-	read -s -n 1 -p "Naduś dowolny klawisz aby kontynować ..."
-	}
+sleep 5
 
 while :
 do {
@@ -160,6 +164,7 @@ done
 }
 echo -e "\e[33mPrzypominam aby zakończyć naduś Ctrl+c\e[0m"
 echo -e "\e[32mBy Curar :) 2020 r.\e[0m"
+#sleep 10
 pauza
 done
 
