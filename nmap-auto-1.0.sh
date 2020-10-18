@@ -93,6 +93,11 @@ nmap_g="nmap -sS -sU -v -O"
 wynik_s="wynik.txt"
 data="`date`"
 
+function pauza {
+	read -s -n 1 -p "Naduś dowolny klawisz aby kontynować . . ."
+	echo ""
+	}
+
 while :
 do {
 	clear
@@ -151,7 +156,8 @@ do {
 done
 }
 echo -e "\e[33mPrzypominam aby zakończyć naduś ctr+c\e[0m"
-echo -e "\e[32mBy Curar :) 2020 r.\e[0m" 
+echo -e "\e[32mBy Curar :) 2020 r.\e[0m"
+pauza
 sleep 5
 done
 
