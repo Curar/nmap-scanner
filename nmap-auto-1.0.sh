@@ -96,7 +96,7 @@ data="`date`"
 function pauza {
 	echo -e "\e[33m********************************************\e[0m"
 	echo -e "\e[33m* Skanowanie celu $ADRES_IP zakończone     *\e[0m"
-        echo -e "\e[33m********************************************\e[0m"
+        /cho -e "\e[33m********************************************\e[0m"
 	echo ""	
 	read -s -n 1 -p "Naduś dowolny klawisz aby kontynować ..."
 	}
@@ -104,7 +104,7 @@ function pauza {
 while :
 do {
 	clear
-	echo -e "\e[33mUWAGA !!! Aby zakończyć naduś ctr+c\e[0m"
+	echo -e "\e[33mUWAGA !!! Aby zakończyć naduś Ctrl+c\e[0m"
 	echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 	read ADRES_IP
 
@@ -158,7 +158,7 @@ do {
 	break
 done
 }
-echo -e "\e[33mPrzypominam aby zakończyć naduś ctr+c\e[0m"
+echo -e "\e[33mPrzypominam aby zakończyć naduś Ctrl+c\e[0m"
 echo -e "\e[32mBy Curar :) 2020 r.\e[0m"
 pauza
 done
