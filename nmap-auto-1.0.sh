@@ -94,8 +94,11 @@ wynik_s="wynik.txt"
 data="`date`"
 
 function pauza {
-	read -s -n 1 -p "Naduś dowolny klawisz aby kontynować . . ."
-	echo ""
+	echo -e "\e[33m********************************************\e[0m"
+	echo -e "\e[33m* Skanowanie celu $ADRES_IP zakończone     *\e[0m"
+        echo -e "\e[33m********************************************\e[0m"
+	echo ""	
+	read -s -n 1 -p "Naduś dowolny klawisz aby kontynować ..."
 	}
 
 while :
@@ -118,7 +121,7 @@ do {
 				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
 				sudo $nmap_s $ADRES_IP >> $wynik_s
 				cat $wynik_s
-				echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
+				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
 				}
 				else {			
 				echo "Data skanowania: $data" > $wynik_s
@@ -126,7 +129,7 @@ do {
 				sudo $nmap_s $ADRES_IP >> $wynik_s
 				$nmap_s $ADRES_IP >> $wynik_s
 				cat $wynik_s	
-				echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
+				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
 				}
 				fi
 			;;
@@ -139,14 +142,14 @@ do {
 				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
 				sudo $nmap_g $ADRES_IP >> $wynik_s
 				cat $wynik_s
-				echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
+				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
 				}
 				else {
 				echo "Data skanowania: $data" > $wynik_s
 				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
 				$nmap_g $ADRES_IP >> $wynik_s
 				cat $wynik_s
-				echo -e "\e[32m Wynik skanowania zapisałem w pliku wynik.txt\e[0m"
+				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
 				}
 				fi			
 			;;
@@ -158,6 +161,5 @@ done
 echo -e "\e[33mPrzypominam aby zakończyć naduś ctr+c\e[0m"
 echo -e "\e[32mBy Curar :) 2020 r.\e[0m"
 pauza
-sleep 5
 done
 
