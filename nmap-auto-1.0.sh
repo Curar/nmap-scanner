@@ -96,7 +96,7 @@ data="`date`"
 function pauza {
 	echo -e "\e[33m********************************************\e[0m"
 	echo -e "\e[33m* Skanowanie celu $ADRES_IP zakończone     *\e[0m"
-        /cho -e "\e[33m********************************************\e[0m"
+        echo -e "\e[33m********************************************\e[0m"
 	echo ""	
 	read -s -n 1 -p "Naduś dowolny klawisz aby kontynować ..."
 	}
