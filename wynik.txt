@@ -1,8 +1,0 @@
-Data skanowania: nie, 18 paź 2020, 08:48:50 CEST
-Skanowałeś następujący cel : 127.0.0.1
-Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-18 08:48 CEST
-Nmap scan report for localhost (127.0.0.1)
-Host is up (0.000014s latency).
-All 1000 scanned ports on localhost (127.0.0.1) are closed
-
-Nmap done: 1 IP address (1 host up) scanned in 0.18 seconds
