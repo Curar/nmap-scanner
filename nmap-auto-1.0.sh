@@ -22,22 +22,74 @@ clear
 if grep -qi Arch /etc/issue 
 	then
 		echo -e "\e[32mWykryłem ,że masz Arch Linux\e[0m"
+		if ! (nmap && sudo) > /dev/null; then {
+			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
+		}
+		else {
+			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
+			echo "Zaloguj się jako root : su -"
+			
+			echo "Wykonj polecenie : pacman -Sy nmap sudo"
+			exit
+		}
+		fi
 	elif grep -qi Debian /etc/issue
 	then
 		echo -e "\e[32mWykryłem ,że masz Debiana\e[0m"
+		if ! (nmap && sudo) > /dev/null; then {
+			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
+		}
+		else {
+			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
+			echo "Zaloguj się jako root : su -"
+			
+			echo "Wykonj polecenie : apt install nmap sudo"
+			exit
+		}
+		fi
 	elif grep -qi Fedora /etc/issue
 	then
-		echo -e "\e[32mWykryłem ,że masz Fedorę\e[0m"
+		echo -e "\e[32mWykryłem ,że masz Fedorę\e[0m"	
+		if ! (nmap && sudo) > /dev/null; then {
+			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
+		}
+		else {
+			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
+			echo "Zaloguj się jako root : su -"
+			
+			echo "Wykonj polecenie : dnf install nmap sudo"
+			exit
+		}
+		fi
 	elif grep -qi Gentoo /etc/issue
 	then
 		echo -e "\e[32mWykryłem ,że masz Gentoo\e[0m"
+		if ! (nmap && sudo) > /dev/null; then {
+			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
+		}
+		else {
+			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
+			echo "Zaloguj się jako root : su -"
+			
+			echo "Wykonj polecenie : emerge nmap sudo"
+			exit
+		}
+		fi
 	else
 		echo -e "\e[32mWykryłem ,że masz `cat /etc/os-release`\e[0m"
+		if ! (nmap && sudo) > /dev/null; then {
+			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
+		}
+		else {
+			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
+			exit
+		}
+		fi
 fi
 sleep 5
 # Zmienne
 nmap_s="nmap"
-nmap_g="nmap -sS -v -O"
+nmap_g="nmap -sS -sU -v -O"
 wynik_s="wynik.txt"
 data="`date`"
 
