@@ -36,21 +36,18 @@ function pauza() {
 	}
 
 nmap_exist() {
-    if nmap -v COMMAND &>/dev/null; then
-        echo "Program Nmap jest zainstalowany"
-    else
-	echo "Zainstaluj program Nmap !"
-	exit
-    fi
+	if ! [ -x "$(command -v nmap)" ]; then
+  		echo 'UWAGA Nmap nie jest zainstalowany !' >&2
+	fi
 }
 
 sudo_exist() {
-    if ! sudo -v COMMAND &>/dev/null; then
-        echo "Program SUDO jest zainstalowany"
-    else
-	echo "Zainstaluj program SUDO !"
-	exit
-    fi
+	if ! [ -x "$(command -v sudo)" ]; then
+  		echo 'UWAGA SUD nie jest zainstalowane, przerywam skrypt !' >&2
+		echo "Zainstaluj wymagane pakiety czyli nmap i sudo"
+		echo "Aby włączyć ponownie skrypt wydaj polecenie sh nmap-auto-1.0.sh lub ./nmap-auto-1.0.sh"
+  		exit 1
+	fi
 }
 
 if grep -qi Arch /etc/issue 
