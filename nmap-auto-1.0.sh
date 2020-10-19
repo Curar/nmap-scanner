@@ -28,9 +28,6 @@ data="`date`"
 
 # Defincja funkcji używanych w skrypcie
 function pauza() {
-	echo -e "\e[33m********************************************\e[0m"
-	echo -e "\e[33m  Skanowanie celu $ADRES_IP zakończone      \e[0m"
-        echo -e "\e[33m********************************************\e[0m"
 	echo ""	
 	read -p "Naduś klawisz ENTER aby kontynować ..."
 	}
@@ -48,6 +45,12 @@ sudo_exist() {
 		echo "Aby włączyć ponownie skrypt wydaj polecenie sh nmap-auto-1.0.sh lub ./nmap-auto-1.0.sh"
   		exit 1
 	fi
+}
+
+wynik() {
+	echo -e "\e[33m********************************************\e[0m"
+	echo -e "\e[33m  Skanowanie celu $ADRES_IP zakończone      \e[0m"
+        echo -e "\e[33m********************************************\e[0m"
 }
 
 if grep -qi Arch /etc/issue 
@@ -81,24 +84,23 @@ sleep 5
 while :
 do {
 	clear
-	echo -e "\e[33mUWAGA !!! Aby zakończyć naduś Ctrl+c\e[0m"
-	echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
-	read ADRES_IP
-
 	echo -e "\e[32mJakie skanowanie przeprowadzić ? :\e[0m"
-	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Sprawdź dostępne interfejsy sieciowe'
+	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Sprawdź dostępne interfejsy sieciowe' 'Wyjście'
 		do
 			case $WYBOR in
 			"Skanowanie - szybkie") 	
-				echo -e "\e[32m Pracujesz jako :\e[0m"; whoami 
-				echo -e "\e[32m Rozpoczynam skanowanie - szybkie dla adresu/domeny : $ADRES_IP\e[0m"
+				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
+				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
+				read ADRES_IP
+				echo -e "\e[32mRozpoczynam skanowanie - szybkie dla adresu/domeny : $ADRES_IP\e[0m"
 				if (($EUID)); then {
-				echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
+				echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
 				echo "Data skanowania: $data" > $wynik_s
 				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
 				sudo $nmap_s $ADRES_IP >> $wynik_s
 				cat $wynik_s
 				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+				wynik;
 				}
 				else {			
 				echo "Data skanowania: $data" > $wynik_s
@@ -107,19 +109,23 @@ do {
 				$nmap_s $ADRES_IP >> $wynik_s
 				cat $wynik_s	
 				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+				wynik;
 				}
 				fi
 			;;
 			"Skanowanie - głębokie")
-				echo -e "\e[32m Pracujesz jako :\e[0m"; whoami 
-				echo -e "\e[32m Rozpoczynam skanowanie - głębokie dla adresu/domeny : $ADRES_IP\e[0m"	
+				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
+				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
+				read ADRES_IP
+				echo -e "\e[32mRozpoczynam skanowanie - głębokie dla adresu/domeny : $ADRES_IP\e[0m"	
 				if (($EUID)); then {	
-				echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
+				echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
 				echo "Data skanowania: $data" > $wynik_s
 				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
 				sudo $nmap_g $ADRES_IP >> $wynik_s
 				cat $wynik_s
 				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+				wynik;
 				}
 				else {
 				echo "Data skanowania: $data" > $wynik_s
@@ -127,20 +133,22 @@ do {
 				$nmap_g $ADRES_IP >> $wynik_s
 				cat $wynik_s
 				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+				wynik;	
 				}
 				fi			
 			;;
 			"Sprawdź dostępne interfejsy sieciowe")
 				ip a;
 			;;
+			"Wyjście")
+				exit
+			;;
 	*) echo "Brak wyboru !"
 	esac
 	break
 done
 }
-echo -e "\e[33mPrzypominam aby zakończyć naduś Ctrl+c\e[0m"
 echo -e "\e[32mBy Curar :) 2020 r.\e[0m"
-#sleep 10
 pauza
 done
 
