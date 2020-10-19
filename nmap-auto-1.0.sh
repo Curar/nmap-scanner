@@ -86,12 +86,12 @@ do {
 	read ADRES_IP
 
 	echo -e "\e[32mJakie skanowanie przeprowadzić ? :\e[0m"
-	select WYBOR in SZYBKIE GLEBOKIE
+	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Sprawdź dostępne interfejsy sieciowe'
 		do
 			case $WYBOR in
-				"SZYBKIE") 	
+			"Skanowanie - szybkie") 	
 				echo -e "\e[32m Pracujesz jako :\e[0m"; whoami 
-				echo -e "\e[32m Rozpoczynam skanowanie SZYBKIE dla adresu/domeny : $ADRES_IP\e[0m"
+				echo -e "\e[32m Rozpoczynam skanowanie - szybkie dla adresu/domeny : $ADRES_IP\e[0m"
 				if (($EUID)); then {
 				echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
 				echo "Data skanowania: $data" > $wynik_s
@@ -110,9 +110,9 @@ do {
 				}
 				fi
 			;;
-			"GLEBOKIE")
+			"Skanowanie - głębokie")
 				echo -e "\e[32m Pracujesz jako :\e[0m"; whoami 
-				echo -e "\e[32m Rozpoczynam skanowanie GŁĘBOKIE dla adresu/domeny : $ADRES_IP\e[0m"	
+				echo -e "\e[32m Rozpoczynam skanowanie - głębokie dla adresu/domeny : $ADRES_IP\e[0m"	
 				if (($EUID)); then {	
 				echo -e "\e[32m Wykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
 				echo "Data skanowania: $data" > $wynik_s
@@ -129,6 +129,9 @@ do {
 				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
 				}
 				fi			
+			;;
+			"Sprawdź dostępne interfejsy sieciowe")
+				ip a;
 			;;
 	*) echo "Brak wyboru !"
 	esac
