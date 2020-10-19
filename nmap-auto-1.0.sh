@@ -35,72 +35,48 @@ function pauza() {
 	read -p "Naduś klawisz ENTER aby kontynować ..."
 	}
 
+nmap_exist() {
+    if nmap -v COMMAND &>/dev/null; then
+        echo "Program Nmap jest zainstalowany"
+    else
+	echo "Zainstaluj program Nmap !"
+	exit
+    fi
+}
+
+sudo_exist() {
+    if ! sudo -v COMMAND &>/dev/null; then
+        echo "Program SUDO jest zainstalowany"
+    else
+	echo "Zainstaluj program SUDO !"
+	exit
+    fi
+}
+
 if grep -qi Arch /etc/issue 
 	then
-		echo -e "\e[32mWykryłem ,że masz Arch Linux\e[0m"
-		if ! (nmap && sudo) > /dev/null; then {
-			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
-		}
-		else {
-			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
-			echo "Zaloguj się jako root : su -"
-			
-			echo "Wykonj polecenie : pacman -Sy nmap sudo"
-			exit
-		}
-		fi
-	elif grep -qi Debian /etc/issue
+		echo -e "\e[32mWykryłem ,że masz Arch Linux\e[0m"		
+		nmap_exist;
+	        sudo_exist;	
+		elif grep -qi Debian /etc/issue
 	then
 		echo -e "\e[32mWykryłem ,że masz Debiana\e[0m"
-		if ! (nmap && sudo) > /dev/null; then {
-			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
-		}
-		else {
-			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
-			echo "Zaloguj się jako root : su -"
-			
-			echo "Wykonj polecenie : apt install nmap sudo"
-			exit
-		}
-		fi
+		nmap_exist;
+		sudo_exist;
 	elif grep -qi Fedora /etc/issue
 	then
 		echo -e "\e[32mWykryłem ,że masz Fedorę\e[0m"	
-		if ! (nmap && sudo) > /dev/null; then {
-			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
-		}
-		else {
-			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
-			echo "Zaloguj się jako root : su -"
-			
-			echo "Wykonj polecenie : dnf install nmap sudo"
-			exit
-		}
-		fi
+		nmap_exist;
+		sudo_exist;
 	elif grep -qi Gentoo /etc/issue
 	then
 		echo -e "\e[32mWykryłem ,że masz Gentoo\e[0m"
-		if ! (nmap && sudo) > /dev/null; then {
-			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
-		}
-		else {
-			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
-			echo "Zaloguj się jako root : su -"
-			
-			echo "Wykonj polecenie : emerge nmap sudo"
-			exit
-		}
-		fi
+		nmap_exist;
+		sudo_exist;
 	else
 		echo -e "\e[32mWykryłem ,że masz `cat /etc/os-release`\e[0m"
-		if ! (nmap && sudo) > /dev/null; then {
-			echo "Widzę, że masz zainstalowany program Nmap i SUDO"
-		}
-		else {
-			echo "Aby skrypt działał musisz zainstalować wymagane pakiety : Nmap i SUDO"
-			exit
-		}
-		fi
+		nmap_exist;
+		sudo_exist;
 fi
 
 sleep 5
