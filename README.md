@@ -1,6 +1,7 @@
 ### Skrypt wykorzystujący program nmap https://nmap.org , ułatwiający procesy skanowania sieci lub domeny.
 ####
 #### Skrypt wykrywa dystrybucję Linux oraz sprawdza czy są zainstalowane wymagane pakiety do poprawnej pracy.
+<img src="https://github.com/Curar/nmap-scanner/blob/main/image/nmap-auto-1.0.sh.png">
 ####
 ***
 #### Instalacja :
