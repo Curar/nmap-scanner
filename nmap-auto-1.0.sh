@@ -15,7 +15,7 @@ echo -e "\e[32m                       |_|               \e[0m"
 echo -e "\e[32m=========================================\e[0m"
 echo ""
 echo -e "\e[33mDZIEŃ DOBRY\e[0m"
-sleep 4
+read -p "Naduś ENTER"
 clear
 
 # Definicja zmiennych używanych w skrypcie
