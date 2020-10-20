@@ -23,7 +23,7 @@ nmap_s="nmap"
 nmap_g="nmap -sS -sU -v -O"
 wynik_s="wynik.txt"
 data="`date`"
-
+IP="`ip addr | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}'`"
 # Defincja funkcji używanych w skrypcie
 function pauza() {
 	echo ""	
@@ -83,7 +83,7 @@ while :
 do {
 	clear
 	echo -e "\e[32mJakie skanowanie przeprowadzić ? :\e[0m"
-	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Sprawdź dostępne interfejsy sieciowe' 'Wyjście'
+	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Skanowanie własnego IP' 'Sprawdź dostępne interfejsy sieciowe' 'Wyjście'
 		do
 			case $WYBOR in
 			"Skanowanie - szybkie") 	
@@ -135,8 +135,15 @@ do {
 				}
 				fi			
 			;;
+			"Skanowanie własnego IP")
+				sudo $nmap_g $IP > $wynik_s
+				cat $wynik_s
+			;;
 			"Sprawdź dostępne interfejsy sieciowe")
-				ip a;
+				echo -e "\e[33m========================================\e[0m"
+				echo -e "\e[33mTwój adres IP : `ip a | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}'`\e[0m"
+				echo -e "\e[33m========================================\e[0m"
+				ip a
 			;;
 			"Wyjście")
 				clear
