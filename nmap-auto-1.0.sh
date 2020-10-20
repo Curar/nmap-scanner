@@ -13,11 +13,9 @@ echo -e "\e[32m |_| \_|_| |_| |_|\__|_| |__/            \e[0m"
 echo -e "\e[33m                       | |       HELLOW! \e[0m"
 echo -e "\e[32m                       |_|               \e[0m"
 echo -e "\e[32m=========================================\e[0m"
-
-echo ""
 echo ""
 echo -e "\e[33mDZIEŃ DOBRY\e[0m"
-sleep 5
+sleep 4
 clear
 
 # Definicja zmiennych używanych w skrypcie
@@ -32,13 +30,13 @@ function pauza() {
 	read -p "Naduś klawisz ENTER aby kontynować ..."
 	}
 
-nmap_exist() {
+function nmap_exist() {
 	if ! [ -x "$(command -v nmap)" ]; then
   		echo 'UWAGA Nmap nie jest zainstalowany !' >&2
 	fi
 }
 
-sudo_exist() {
+function sudo_exist() {
 	if ! [ -x "$(command -v sudo)" ]; then
   		echo 'UWAGA SUD nie jest zainstalowane, przerywam skrypt !' >&2
 		echo "Zainstaluj wymagane pakiety czyli nmap i sudo"
@@ -47,7 +45,7 @@ sudo_exist() {
 	fi
 }
 
-wynik() {
+function wynik() {
 	echo -e "\e[33m********************************************\e[0m"
 	echo -e "\e[33m  Skanowanie celu $ADRES_IP zakończone      \e[0m"
         echo -e "\e[33m********************************************\e[0m"
