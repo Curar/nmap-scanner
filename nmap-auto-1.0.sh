@@ -2,7 +2,7 @@
 #
 # Skrypt skanujący z użyciem Nmap
 # By Wojtek 2020
-
+clear
 echo -e "\e[32m=========================================\e[0m"
 echo -e "\e[32m  _   _                                  \e[0m"       
 echo -e "\e[33m | \ | | :) by Curar 2020                \e[0m"      
@@ -141,6 +141,7 @@ do {
 				ip a;
 			;;
 			"Wyjście")
+				clear
 				exit
 			;;
 	*) echo "Brak wyboru !"
