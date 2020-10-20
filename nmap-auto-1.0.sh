@@ -141,7 +141,7 @@ do {
 			;;
 			"Sprawdź dostępne interfejsy sieciowe")
 				echo -e "\e[33m========================================\e[0m"
-				echo -e "\e[33mTwój adres IP : `ip a | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}'`\e[0m"
+				echo -e "\e[33mTwój adres IP : $IP\e[0m"
 				echo -e "\e[33m========================================\e[0m"
 				ip a
 			;;
