@@ -55,26 +55,26 @@ wynik() {
 
 if grep -qi Arch /etc/issue 
 	then
-		echo -e "\e[32mWykryłem ,że masz Arch Linux\e[0m"		
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Arch Linux\e[0m"		
 		nmap_exist;
 	        sudo_exist;	
 		elif grep -qi Debian /etc/issue
 	then
-		echo -e "\e[32mWykryłem ,że masz Debiana\e[0m"
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Debiana\e[0m"
 		nmap_exist;
 		sudo_exist;
 	elif grep -qi Fedora /etc/issue
 	then
-		echo -e "\e[32mWykryłem ,że masz Fedorę\e[0m"	
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Fedora\e[0m"	
 		nmap_exist;
 		sudo_exist;
 	elif grep -qi Gentoo /etc/issue
 	then
-		echo -e "\e[32mWykryłem ,że masz Gentoo\e[0m"
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Gentoo\e[0m"
 		nmap_exist;
 		sudo_exist;
 	else
-		echo -e "\e[32mWykryłem ,że masz `cat /etc/os-release`\e[0m"
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją `cat /etc/os-release`\e[0m"
 		nmap_exist;
 		sudo_exist;
 fi
