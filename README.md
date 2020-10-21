@@ -7,7 +7,7 @@
 ***
 #### Instalacja :
 ***
-#### Klonowanie calego projektu :
+#### Klonowanie całego projektu :
 `git clone https://github.com/Curar/nmap-scanner.git`
 #### Aby rozpocząć skanowanie wydaj polecenie :
 `sh nmap-auto-1.0.sh`
