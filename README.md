@@ -7,9 +7,9 @@
 ***
 #### Instalacja :
 ***
-#### `git clone https://github.com/Curar/nmap-scanner.git`
-#### Aby rozpocząć skanowanie :
-#### `sh nmap-auto-1.0.sh`
-#### Opcjonalnie można dodać :
-#### `chmod +x nmap-auto-1.0.sh`
-#### `./nmap-auto-1.0.sh`
+#### Klonowanie calego projektu :
+`git clone https://github.com/Curar/nmap-scanner.git`
+#### Aby rozpocząć skanowanie wydaj polecenie :
+`sh nmap-auto-1.0.sh`
+#### lub polecenie :
+`./nmap-auto-1.0.sh`
