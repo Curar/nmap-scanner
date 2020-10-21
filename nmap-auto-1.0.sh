@@ -19,11 +19,14 @@ read -p "Naduś ENTER"
 clear
 
 # Definicja zmiennych używanych w skrypcie
+nmap_h="nmap -sn"
 nmap_s="nmap"
 nmap_g="nmap -sS -sU -v -O"
 wynik_s="wynik.txt"
 data="`date`"
 IP="`ip a | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}'`"
+MASKA="`ip -o -f inet a show | awk '/scope global/ {print $4}'`"
+
 # Defincja funkcji używanych w skrypcie
 function pauza() {
 	echo ""	
@@ -51,6 +54,7 @@ function wynik() {
         echo -e "\e[33m********************************************\e[0m"
 }
 
+function wykryj_dystrybucje() {
 if grep -qi Arch /etc/issue 
 	then
 		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Arch Linux\e[0m"		
@@ -76,14 +80,16 @@ if grep -qi Arch /etc/issue
 		nmap_exist;
 		sudo_exist;
 fi
-
 sleep 5
+}
+
+wykryj_dystrybucje;
 
 while :
 do {
 	clear
 	echo -e "\e[32mJakie skanowanie przeprowadzić ? :\e[0m"
-	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Skanowanie własnego IP' 'Sprawdź dostępne interfejsy sieciowe' 'Wyjście'
+	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Skanowanie własnego IP' 'Wykrywanie hostów w obecnej sieci LAN' 'Wykrywanie hostów w innej podsieci' 'Sprawdź dostępne interfejsy sieciowe' 'Wyjście'
 		do
 			case $WYBOR in
 			"Skanowanie - szybkie") 	
@@ -135,8 +141,8 @@ do {
 				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
 				wynik;	
 				}
-				fi			
-			;;
+				fi
+			;;			
 			"Skanowanie własnego IP")
 				if (($EUID)); then {
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 	
@@ -150,6 +156,23 @@ do {
 				cat $wynik_s
 				}
 				fi
+			;;
+			"Wykrywanie hostów w obecnej sieci LAN")
+				echo "Wykrywanie : $MASKA"
+				$nmap_h $MASKA > $wynik_s
+				cat $wynik_s
+			;;
+			"Wykrywanie hostów w innej podsieci")
+				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
+				echo -e "\e[32mPodaj adres IPv4 wraz z maską np. 127.0.0.1/24:\e[0m"
+				read ADRES_IP
+				echo -e "\e[32mRozpoczynam skanowanie - dla zakresu : $ADRES_IP\e[0m"
+				echo "Data skanowania: $data" > $wynik_s
+				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
+				$nmap_h $ADRES_IP >> $wynik_s
+				cat $wynik_s
+				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+				wynik;	
 			;;
 			"Sprawdź dostępne interfejsy sieciowe")
 				echo -e "\e[33m========================================\e[0m"
