@@ -23,7 +23,7 @@ nmap_s="nmap"
 nmap_g="nmap -sS -sU -v -O"
 wynik_s="wynik.txt"
 data="`date`"
-IP="`ip addr | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}'`"
+IP="`ip a | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}'`"
 # Defincja funkcji używanych w skrypcie
 function pauza() {
 	echo ""	
@@ -88,6 +88,7 @@ do {
 			case $WYBOR in
 			"Skanowanie - szybkie") 	
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
+				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"	
 				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 				read ADRES_IP
 				echo -e "\e[32mRozpoczynam skanowanie - szybkie dla adresu/domeny : $ADRES_IP\e[0m"
@@ -103,7 +104,7 @@ do {
 				else {			
 				echo "Data skanowania: $data" > $wynik_s
 				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
-				sudo $nmap_s $ADRES_IP >> $wynik_s
+				$nmap_s $ADRES_IP >> $wynik_s
 				$nmap_s $ADRES_IP >> $wynik_s
 				cat $wynik_s	
 				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
@@ -113,6 +114,7 @@ do {
 			;;
 			"Skanowanie - głębokie")
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
+				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"
 				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 				read ADRES_IP
 				echo -e "\e[32mRozpoczynam skanowanie - głębokie dla adresu/domeny : $ADRES_IP\e[0m"	
