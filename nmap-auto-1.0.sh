@@ -138,8 +138,18 @@ do {
 				fi			
 			;;
 			"Skanowanie własnego IP")
-				sudo $nmap_g $IP > $wynik_s
+				if (($EUID)); then {
+				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 	
+				echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
+				echo "Data skanowania: $data" > $wynik_s	
+				sudo $nmap_g $IP >> $wynik_s
 				cat $wynik_s
+				} else {
+				echo "Data skanowania: $data" > $wynik_s
+				$nmap_g $IP >> $wynik_s
+				cat $wynik_s
+				}
+				fi
 			;;
 			"Sprawdź dostępne interfejsy sieciowe")
 				echo -e "\e[33m========================================\e[0m"
