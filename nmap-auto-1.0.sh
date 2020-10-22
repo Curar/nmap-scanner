@@ -204,4 +204,3 @@ done
 echo -e "\e[32mBy Curar :) 2020 r.\e[0m"
 pauza
 done
-
