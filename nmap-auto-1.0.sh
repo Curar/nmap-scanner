@@ -1,7 +1,16 @@
 #!/bin/bash
+# 
+# By Curar 2020r.
 #
-# Skrypt skanujący z użyciem Nmap
-# By Wojtek 2020
+# Skrypt skanujący z użyciem programu Nmap
+# https://github.com/nmap/nmap
+# https://nmap.org/
+# 
+#
+# Write using vim editor
+# https://github.com/vim/vim
+# https://www.vim.org/
+
 clear
 tablica_logo["0"]="
 =========================================
