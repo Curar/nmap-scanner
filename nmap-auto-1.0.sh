@@ -3,17 +3,19 @@
 # Skrypt skanujący z użyciem Nmap
 # By Wojtek 2020
 clear
-echo -e "\e[32m=========================================\e[0m"
-echo -e "\e[32m  _   _                                  \e[0m"       
-echo -e "\e[33m | \ | | :) by Curar 2020                \e[0m"      
-echo -e "\e[32m |  \| |_ __ ___   __ _ _ __             \e[0m"  
-echo -e "\e[32m | | | | |_ | _ \ / _| | |_ \   - OSINT  \e[0m"
-echo -e "\e[32m | |\  | | | | | | (_| | |_) |           \e[0m"
-echo -e "\e[32m |_| \_|_| |_| |_|\__|_| |__/            \e[0m"
-echo -e "\e[33m                       | |       HELLOW! \e[0m"
-echo -e "\e[32m                       |_|               \e[0m"
-echo -e "\e[32m=========================================\e[0m"
-echo ""
+tablica_logo["0"]="
+=========================================
+  _   _                                         
+ | \ | | :) by Curar 2020                      
+ |  \| |_ __ ___   __ _ _ __               
+ | | | | |_ | _ \ / _| | |_ \   - OSINT  
+ | |\  | | | | | | (_| | |_) |           
+ |_| \_|_| |_| |_|\__|_| |__/            
+                       | |       HELLOW! 
+                       |_|               
+========================================
+"
+echo -e "\e[32m${tablica_logo["0"]}\e[0m"
 echo -e "\e[33mDZIEŃ DOBRY\e[0m"
 read -p "Naduś ENTER"
 clear
