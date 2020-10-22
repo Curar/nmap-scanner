@@ -12,6 +12,19 @@
 # https://www.vim.org/
 
 clear
+tablica_info["0"]="
+=========================================
+Skrypt skanujący z użyciem programu Nmap
+=========================================
+ https://github.com/nmap/nmap
+ https://nmap.org/
+ 
+Write using vim editor
+ 
+ https://github.com/vim/vim
+ https://www.vim.org/
+=========================================
+"
 tablica_logo["0"]="
 =========================================
   _   _                                         
@@ -24,8 +37,10 @@ tablica_logo["0"]="
                        |_|               
 ========================================
 "
+echo -e "\e[33m${tablica_info["0"]}\e[0m"
 echo -e "\e[32m${tablica_logo["0"]}\e[0m"
 echo -e "\e[33mDZIEŃ DOBRY\e[0m"
+echo ""
 read -p "Naduś ENTER"
 clear
 
