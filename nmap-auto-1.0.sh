@@ -82,7 +82,7 @@ if grep -qi Arch /etc/issue
 		nmap_exist;
 		sudo_exist;
 fi
-sleep 5
+sleep 3
 }
 
 wykryj_dystrybucje;
@@ -90,6 +90,7 @@ wykryj_dystrybucje;
 while :
 do {
 	clear
+	echo -e "\e[32m${tablica_logo["0"]}\e[0m"
 	echo -e "\e[32mJakie skanowanie przeprowadzić ? :\e[0m"
 	select WYBOR in 'Skanowanie - szybkie' 'Skanowanie - głębokie' 'Skanowanie własnego IP' 'Wykrywanie hostów w obecnej sieci LAN' 'Wykrywanie hostów w innej podsieci' 'Sprawdź dostępne interfejsy sieciowe' 'Wyjście'
 		do
