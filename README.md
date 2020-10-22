@@ -1,4 +1,4 @@
-### Skrypt wykorzystujący program nmap https://nmap.org , ułatwiający procesy skanowania sieci lub domeny.
+### Skrypt napisany w Bash'u wykorzystujący program nmap https://nmap.org , ułatwiający procesy skanowania sieci lub domeny.
 ####
 #### Skrypt wykrywa dystrybucję Linux oraz sprawdza czy są zainstalowane wymagane pakiety do poprawnej pracy.
 ####
