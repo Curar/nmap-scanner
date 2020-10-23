@@ -7,7 +7,8 @@
 ***
 #### Instalacja :
 ***
-#### Klonowanie całego projektu :
+#### Pobieranie wersji release v1.0 :
+https://github.com/Curar/nmap-scanner/releases/download/c03f4b8/nmap-auto-1.0.sh#### Klonowanie całego projektu :
 `git clone https://github.com/Curar/nmap-scanner.git`
 #### Aby rozpocząć skanowanie wydaj polecenie :
 `sh nmap-auto-1.0.sh`
