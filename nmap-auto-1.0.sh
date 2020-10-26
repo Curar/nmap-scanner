@@ -62,13 +62,13 @@ function pauza() {
 function nmap_exist() {
 	if ! [ -x "$(command -v nmap)" ]; then
   		echo 'UWAGA Nmap nie jest zainstalowany !' >&2
+		exit 1
 	fi
 }
 
 function sudo_exist() {
 	if ! [ -x "$(command -v sudo)" ]; then
   		echo 'UWAGA SUD nie jest zainstalowane, przerywam skrypt !' >&2
-		echo "Zainstaluj wymagane pakiety czyli nmap i sudo"
 		echo "Aby włączyć ponownie skrypt wydaj polecenie sh nmap-auto-1.0.sh lub ./nmap-auto-1.0.sh"
   		exit 1
 	fi
