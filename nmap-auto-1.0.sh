@@ -256,9 +256,14 @@ do {
 				fi
 			;;
 			"Wykrywanie hostów w obecnej sieci LAN")
+				if [[ ! -z "$MASKA" ]]; then {
 				echo "Wykrywanie : $MASKA"
 				$nmap_h $MASKA > $wynik_s
 				cat $wynik_s
+				} else {
+				echo -e "\e[33mBrak adresacji na interfejsach sieciowych !\e[0m"
+				} 
+				fi
 			;;
 			"Wykrywanie hostów w innej podsieci")
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
