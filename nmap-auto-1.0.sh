@@ -157,7 +157,6 @@ do {
 				read ADRES_IP	
 				# Wykrywająca adres IP (wmiarę poprawnego)	
 				if [[ $ADRES_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then {
-				if [[ $ADRES_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then {
 						echo -e "\e[32mRozpoczynam skanowanie - głębokie dla adresu/domeny : $ADRES_IP\e[0m"	
 						if (($EUID)); then {	
 						echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
