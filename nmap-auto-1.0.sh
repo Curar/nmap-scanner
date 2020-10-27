@@ -123,50 +123,64 @@ do {
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"	
 				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 				read ADRES_IP
-				echo -e "\e[32mRozpoczynam skanowanie - szybkie dla adresu/domeny : $ADRES_IP\e[0m"
-				if (($EUID)); then {
-				echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
-				echo "Data skanowania: $data" > $wynik_s
-				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
-				sudo $nmap_s $ADRES_IP >> $wynik_s
-				cat $wynik_s
-				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
-				wynik;
-				}
-				else {			
-				echo "Data skanowania: $data" > $wynik_s
-				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
-				$nmap_s $ADRES_IP >> $wynik_s
-				$nmap_s $ADRES_IP >> $wynik_s
-				cat $wynik_s	
-				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
-				wynik;
-				}
+				# Wykrywająca adres IP (wmiarę poprawnego)	
+				if [[ $ADRES_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then {
+						echo -e "\e[32mRozpoczynam skanowanie - szybkie dla adresu/domeny : $ADRES_IP\e[0m"	
+						if (($EUID)); then {	
+						echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
+						sudo $nmap_s $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;
+						} else {
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
+						$nmap_s $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;	
+						} 
+						fi 
+						}
+						else {
+						echo -e "\e[33mPodano błędny adres IP !\e[0m"
+						}
+				
 				fi
-			;;
+				;;
 			"Skanowanie - głębokie")
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"
 				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
-				read ADRES_IP
-				echo -e "\e[32mRozpoczynam skanowanie - głębokie dla adresu/domeny : $ADRES_IP\e[0m"	
-				if (($EUID)); then {	
-				echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
-				echo "Data skanowania: $data" > $wynik_s
-				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
-				sudo $nmap_g $ADRES_IP >> $wynik_s
-				cat $wynik_s
-				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
-				wynik;
-				}
-				else {
-				echo "Data skanowania: $data" > $wynik_s
-				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
-				$nmap_g $ADRES_IP >> $wynik_s
-				cat $wynik_s
-				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
-				wynik;	
-				}
+				read ADRES_IP	
+				# Wykrywająca adres IP (wmiarę poprawnego)	
+				if [[ $ADRES_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then {
+				if [[ $ADRES_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then {
+						echo -e "\e[32mRozpoczynam skanowanie - głębokie dla adresu/domeny : $ADRES_IP\e[0m"	
+						if (($EUID)); then {	
+						echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
+						sudo $nmap_g $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;
+						} else {
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
+						$nmap_g $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;	
+						} 
+						fi 
+						}
+						else {	
+						echo -e "\e[33mPodano błędny adres IP !\e[0m"
+						}
+				
 				fi
 			;;			
 			"Skanowanie własnego IP")
