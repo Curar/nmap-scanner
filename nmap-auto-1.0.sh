@@ -126,7 +126,7 @@ do {
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"	
 				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 				read ADRES_IP
-				# Wykrywanie adres IP (wmiarę poprawnego)	
+				# Wykrywanie adresu IP (wmiarę poprawnego)	
 				if [[ $ADRES_IP =~ $IP_VAILD ]]; 
 				then {
 						echo -e "\e[32mRozpoczynam skanowanie - szybkie dla adresu : $ADRES_IP\e[0m"	
@@ -179,7 +179,7 @@ do {
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"
 				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 				read ADRES_IP	
-				# Wykrywająca adres IP (wmiarę poprawnego)	
+				# Wykrywanie adresu IP (wmiarę poprawnego)	
 				if [[ $ADRES_IP =~ $IP_VAILD ]]; then {
 						read -p "Podaj porty do przeskanowania z zakresu od 0 do (Max to 65535)" PORTY
 						if (($PORTY <= 65535)); then {
