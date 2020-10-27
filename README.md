@@ -1,5 +1,7 @@
+## Opis po Polsku :
 ### Skrypt napisany w Bash'u wykorzystujący program nmap https://nmap.org , ułatwiający procesy skanowania sieci lub domeny.
 ####
+## Description in English :
 ### Bash script that uses nmap https://nmap.org to facilitate network or domain scanning
 ####
 #### Skrypt wykrywa dystrybucję Linux oraz sprawdza czy są zainstalowane wymagane pakiety do poprawnej pracy.
