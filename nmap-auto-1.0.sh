@@ -68,7 +68,7 @@ function nmap_exist() {
 
 function sudo_exist() {
 	if ! [ -x "$(command -v sudo)" ]; then
-  		echo 'UWAGA SUD nie jest zainstalowane, przerywam skrypt !' >&2
+  		echo 'UWAGA SUDO nie jest zainstalowane, przerywam skrypt !' >&2
 		echo "Aby włączyć ponownie skrypt wydaj polecenie sh nmap-auto-1.0.sh lub ./nmap-auto-1.0.sh"
   		exit 1
 	fi
