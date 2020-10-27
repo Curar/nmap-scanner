@@ -59,19 +59,14 @@ function pauza() {
 	read -p "Naduś klawisz ENTER aby kontynować ..."
 	}
 
-function nmap_exist() {
+function nmap_sudo_exist() {
 	if ! [ -x "$(command -v nmap)" ]; then
   		echo 'UWAGA Nmap nie jest zainstalowany !' >&2
 		exit 1
-	fi
-}
-
-function sudo_exist() {
-	if ! [ -x "$(command -v sudo)" ]; then
-  		echo 'UWAGA SUDO nie jest zainstalowane, przerywam skrypt !' >&2
-		echo "Aby włączyć ponownie skrypt wydaj polecenie sh nmap-auto-1.0.sh lub ./nmap-auto-1.0.sh"
-  		exit 1
-	fi
+	elif ! [ -x "$(command -v sudo)" ]; then
+	       echo 'UWAGA SUDO nie jest zainstalowane !' >&2
+       	       exit 1
+	fi	       
 }
 
 function wynik() {
@@ -84,27 +79,22 @@ function wykryj_dystrybucje() {
 if grep -qi Arch /etc/issue 
 	then
 		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Arch Linux\e[0m"		
-		nmap_exist;
-	        sudo_exist;	
+		nmap_sudo_exist;	
 		elif grep -qi Debian /etc/issue
 	then
 		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Debiana\e[0m"
-		nmap_exist;
-		sudo_exist;
+		nmap_sudo_exist;		
 	elif grep -qi Fedora /etc/issue
 	then
-		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Fedora\e[0m"	
-		nmap_exist;
-		sudo_exist;
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Fedora\e[0m"		
+		nmap_sudo_exist;		
 	elif grep -qi Gentoo /etc/issue
 	then
-		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Gentoo\e[0m"
-		nmap_exist;
-		sudo_exist;
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją Gentoo\e[0m"	
+		nmap_sudo_exist;		
 	else
-		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją `cat /etc/os-release`\e[0m"
-		nmap_exist;
-		sudo_exist;
+		echo -e "\e[32mWykryłem ,że pracujemy z dystrybucją `cat /etc/os-release`\e[0m"	
+		nmap_sudo_exist;		
 fi
 sleep 3
 }
