@@ -15,5 +15,5 @@
 `sh nmap-auto-1.0.sh`
 #### lub polecenie :
 `./nmap-auto-1.0.sh`
-#### Jeżeli używasz Debiana lub masz nietypowo zainstalowanego Bash'a sprawdź jak poleceniem i zmień pierwszą linie skryptu na odpowiednią ścieżkę :
+#### Jeżeli używasz dystrybucji Debiana lub masz nietypowo zainstalowanego Bash'a sprawdź gdzie on się znajduje a następnie zmień pierwszą wiersz skryptu na odpowiednią ścieżkę :
 `which bash`
