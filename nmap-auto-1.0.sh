@@ -257,11 +257,11 @@ do {
 			;;
 			"Wykrywanie hostów w obecnej sieci LAN")
 				if [[ ! -z "$MASKA" ]]; then {
-				echo "Wykrywanie : $MASKA"
-				$nmap_h $MASKA > $wynik_s
-				cat $wynik_s
+					echo "Wykrywanie : $MASKA"
+					$nmap_h $MASKA > $wynik_s
+					cat $wynik_s
 				} else {
-				echo -e "\e[33mBrak adresacji na interfejsach sieciowych !\e[0m"
+					echo -e "\e[33mBrak adresacji na interfejsach sieciowych !\e[0m"
 				} 
 				fi
 			;;
@@ -269,19 +269,29 @@ do {
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mPodaj adres IPv4 wraz z maską np. 127.0.0.1/24:\e[0m"
 				read ADRES_IP
-				echo -e "\e[32mRozpoczynam skanowanie - dla zakresu : $ADRES_IP\e[0m"
-				echo "Data skanowania: $data" > $wynik_s
-				echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
-				$nmap_h $ADRES_IP >> $wynik_s
-				cat $wynik_s
-				echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
-				wynik;	
+				if [[ ! -z "$ADRES_IP" ]]; then {
+					echo -e "\e[32mRozpoczynam skanowanie - dla zakresu : $ADRES_IP\e[0m"
+					echo "Data skanowania: $data" > $wynik_s
+					echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
+					$nmap_h $ADRES_IP >> $wynik_s
+					cat $wynik_s
+					echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+					wynik;
+				} else {
+					echo -e "\e[33mUWAGA ! Nie podałeś adresu IPv4 wraz z maską np. 127.0.0.1/24 !\e[0m"
+				}
+				fi	
 			;;
 			"Sprawdź dostępne interfejsy sieciowe")
-				echo -e "\e[33m========================================\e[0m"
-				echo -e "\e[33mTwój adres IP : $IP\e[0m"
-				echo -e "\e[33m========================================\e[0m"
-				ip a
+				if [[ ! -z "$IP" ]]; then {
+					echo -e "\e[33m========================================\e[0m"
+					echo -e "\e[33mTwój adres IP : $IP\e[0m"
+					echo -e "\e[33m========================================\e[0m"
+					ip a
+				} else {
+					echo -e "\e[33mBrak adresów IP\e[0m"
+				}
+				fi
 			;;
 			"Wyjście")
 				clear
