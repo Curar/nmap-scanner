@@ -10,7 +10,7 @@
 ####
 ![GitHub Logo](/image/nmap-auto-1.0.sh.png)
 ####
-![GitHub Logo](/image/nmap-auto-1.0-2.sh.png)
+![Terminal](/image/nmap-auto-1.0.sh-2.png) 
 ####
 ***
 #### Instalacja :
