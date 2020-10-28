@@ -9,6 +9,7 @@
 #### The script detects Linux distribution, checks if packages required for proper script operation are installed.
 ####
 ![GitHub Logo](/image/nmap-auto-1.0.sh.png)
+![GitHub Logo](/image/nmap-auto-1.0-2.sh.png)
 ####
 ***
 #### Instalacja :
