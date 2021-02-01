@@ -203,8 +203,8 @@ do {
 			"Skanowanie - głębokie")
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"
-				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
-				read ADRES_IP	
+				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"	
+				wykryj_ip;
 				# Wykrywanie adresu IP (wmiarę poprawnego)	
 				if [[ $ADRES_IP =~ $IP_VAILD ]]; then {
 						read -p "Podaj porty do przeskanowania z zakresu od 0 do (Max to 65535)" PORTY
