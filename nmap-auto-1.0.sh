@@ -49,7 +49,7 @@ nmap_h="nmap -sn"
 nmap_s="nmap"
 nmap_g="nmap -sS -sU -v -O -p 0-"
 domena_vaild="^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$"
-IP_VAILD="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" 
+IP_VAILD="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" 
 ZAKRES_PORTY="^[0-9]+$"
 wynik_s="wynik.txt"
 data="`date`"
@@ -76,6 +76,30 @@ function wynik() {
 	echo -e "\e[33m********************************************\e[0m"
 	echo -e "\e[33m  Skanowanie celu $ADRES_IP zakończone      \e[0m"
         echo -e "\e[33m********************************************\e[0m"
+}
+
+function wykryj_ip() {
+ip a > baza_ip.txt
+grep -o 'inet [[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]' baza_ip.txt > baza2_ip.txt
+grep -o '[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]' baza2_ip.txt > baza3_ip.txt
+readarray -t menu < baza3_ip.txt
+		for i in "${!menu[@]}"; do
+			menu_list[$i]="${menu[$i]%% *}"
+		done
+		echo -e "\e[32mWykryte adresy IPv4 :\e[0m"
+		select ADRES_IP in "${menu_list[@]}" "EXIT"; do
+		case "$ADRES_IP" in
+			"EXIT")
+			clear
+			break
+			;;
+			*)
+			echo "You chose : $ADRES_IP"
+			sleep 2
+			;;
+		esac
+		break
+		done
 }
 
 function wykryj_dystrybucje() {
@@ -125,7 +149,9 @@ do {
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"	
 				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
-				read ADRES_IP
+				wykryj_ip;
+				echo $ADRES_IP
+				sleep 1
 				# Wykrywanie adresu IP (wmiarę poprawnego)	
 				if [[ $ADRES_IP =~ $IP_VAILD ]]; 
 				then {
