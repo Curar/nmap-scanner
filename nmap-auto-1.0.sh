@@ -80,8 +80,8 @@ function wynik() {
 
 function wykryj_ip() {
 ip a > baza_ip.txt
-grep -o '[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+/[[:digit:]]' baza_ip.txt > baza2_ip.txt
-grep -o '[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]' baza2_ip.txt > baza3_ip.txt
+grep -o 'inet [0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' baza_ip.txt > baza2_ip.txt
+grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' baza2_ip.txt > baza3_ip.txt
 readarray -t menu < baza3_ip.txt
 		for i in "${!menu[@]}"; do
 			menu_list[$i]="${menu[$i]%% *}"
