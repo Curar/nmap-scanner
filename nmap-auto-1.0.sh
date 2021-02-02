@@ -80,22 +80,24 @@ function wynik() {
 
 function wykryj_ip() {
 ip a > baza_ip.txt
-grep -o 'inet [0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' baza_ip.txt > baza2_ip.txt
-grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' baza2_ip.txt > baza3_ip.txt
+grep -o 'inet [[:digit:]]\{1,3\}\.[[:digit:]]\{1,3\}\.[[:digit:]]\{1,3\}\.[[:digit:]]\{1,3\}' baza_ip.txt > baza2_ip.txt
+grep -o '[[:digit:]]\{1,3\}\.[[:digit:]]\{1,3\}\.[[:digit:]]\{1,3\}\.[[:digit:]]\{1,3\}' baza2_ip.txt > baza3_ip.txt
 readarray -t menu < baza3_ip.txt
 		for i in "${!menu[@]}"; do
 			menu_list[$i]="${menu[$i]%% *}"
 		done
 		echo -e "\e[32mWykryte adresy IPv4 :\e[0m"
-		select ADRES_IP in "${menu_list[@]}" "Podaj IP" "EXIT"; do
+		select ADRES_IP in "${menu_list[@]}" "EXIT" "Podaj IP"; do
 		case "$ADRES_IP" in
-			"Podaj IP")
-				echo "Wpisz adres IPv4 np. 8.8.8.8 :"
-				read $ADRES_IP
-			;;
 			"EXIT")
 			clear
 			break
+			;;
+			"Podaj IP")
+				echo "Wpisz adres IPv4 np. 8.8.8.8 :"
+				read -p ADRES_IP
+				echo $ADRES_IP
+				sleep 2
 			;;
 			*)
 			echo "You chose : $ADRES_IP"
