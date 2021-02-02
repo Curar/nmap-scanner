@@ -49,7 +49,7 @@ nmap_h="nmap -sn"
 nmap_s="nmap"
 nmap_g="nmap -sS -sU -v -O -p 0-"
 domena_vaild="^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$"
-IP_VAILD="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" 
+IP_VAILD="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" 
 ZAKRES_PORTY="^[0-9]+$"
 wynik_s="wynik.txt"
 data="`date`"
@@ -80,15 +80,19 @@ function wynik() {
 
 function wykryj_ip() {
 ip a > baza_ip.txt
-grep -o 'inet [[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]' baza_ip.txt > baza2_ip.txt
+grep -o '[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+/[[:digit:]]' baza_ip.txt > baza2_ip.txt
 grep -o '[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]\+.[[:digit:]]' baza2_ip.txt > baza3_ip.txt
 readarray -t menu < baza3_ip.txt
 		for i in "${!menu[@]}"; do
 			menu_list[$i]="${menu[$i]%% *}"
 		done
 		echo -e "\e[32mWykryte adresy IPv4 :\e[0m"
-		select ADRES_IP in "${menu_list[@]}" "EXIT"; do
+		select ADRES_IP in "${menu_list[@]}" "Podaj IP" "EXIT"; do
 		case "$ADRES_IP" in
+			"Podaj IP")
+				echo "Wpisz adres IPv4 np. 8.8.8.8 :"
+				read $ADRES_IP
+			;;
 			"EXIT")
 			clear
 			break
