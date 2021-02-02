@@ -16,6 +16,8 @@
 #### Instalacja :
 ***
 #### Pobieranie wersji release v1.0 (wersja stara stabilna) :
+[nmap-auto-1.0.sh](https://github.com/Curar/nmap-scanner/releases/download/untagged-8c991cd956b4af2a17cb/nmap-auto-1.0.sh)
+#### Pobieranie wersji rozwojowej (unstable) :
 [nmap-auto-1.0.sh](https://raw.githubusercontent.com/Curar/nmap-scanner/main/nmap-auto-1.0.sh)
 #### Klonowanie całego projektu (wersja rozwojowa zalecana) :
 `git clone https://github.com/Curar/nmap-scanner.git`
