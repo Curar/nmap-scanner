@@ -87,17 +87,11 @@ readarray -t menu < baza3_ip.txt
 			menu_list[$i]="${menu[$i]%% *}"
 		done
 		echo -e "\e[32mWykryte adresy IPv4 :\e[0m"
-		select ADRES_IP in "${menu_list[@]}" "EXIT" "Podaj IP"; do
+		select ADRES_IP in "${menu_list[@]}" "EXIT"; do
 		case "$ADRES_IP" in
 			"EXIT")
 			clear
 			break
-			;;
-			"Podaj IP")
-				echo "Wpisz adres IPv4 np. 8.8.8.8 :"
-				read -p ADRES_IP
-				echo $ADRES_IP
-				sleep 2
 			;;
 			*)
 			echo "You chose : $ADRES_IP"
@@ -154,7 +148,6 @@ do {
 			"Skanowanie - szybkie") 	
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"	
-				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"
 				wykryj_ip;
 				echo $ADRES_IP
 				sleep 1
@@ -209,7 +202,6 @@ do {
 			"Skanowanie - głębokie")
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"
-				echo -e "\e[32mPodaj adres IPv4 np. 127.0.0.1 lub domenę np. nmap.org :\e[0m"	
 				wykryj_ip;
 				# Wykrywanie adresu IP (wmiarę poprawnego)	
 				if [[ $ADRES_IP =~ $IP_VAILD ]]; then {
