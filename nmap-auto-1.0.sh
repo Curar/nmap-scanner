@@ -136,6 +136,7 @@ do {
 	opcje_wyboru=(
 		"Skanowanie - szybkie" 
 		"Skanowanie - głębokie" 
+		"Skanowanie IP lub domeny"
 		"Skanowanie własnego IP"
 		"Wykrywanie hostów w obecnej sieci LAN" 
 		"Wykrywanie hostów w innej podsieci" 
@@ -264,7 +265,59 @@ do {
 					} fi
 				} 
 				fi
-			;;			
+			;;	
+			"Skanowanie IP lub domeny")
+			read -p "Podaj adres IP lub domenę :" ADRES_IP
+			echo $ADRES_IP
+			sleep 1	
+				# Wykrywanie adresu IP (wmiarę poprawnego)	
+				if [[ $ADRES_IP =~ $IP_VAILD ]]; 
+				then {
+						echo -e "\e[32mRozpoczynam skanowanie - szybkie dla adresu : $ADRES_IP\e[0m"	
+						if (($EUID)); then {	
+						echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
+						sudo $nmap_s $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;
+						} else {
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
+						$nmap_s $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;	
+						} 
+						fi
+				 	}	
+				elif [[ $ADRES_IP =~ $domena_vaild ]]; 
+				then {	
+						echo -e "\e[32mRozpoczynam skanowanie - szybkie dla domeny : $ADRES_IP\e[0m"	
+						if (($EUID)); then {	
+						echo -e "\e[32mWykryłem, że nie pracujesz jako root włączę nmap poprzez polecenie sudo ! może być wymagane podanie hasła :\e[0m"
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 	
+						sudo $nmap_s $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;
+						} else {
+						echo "Data skanowania: $data" > $wynik_s
+						echo "Skanowałeś następujący cel : $ADRES_IP" >> $wynik_s 
+						$nmap_s $ADRES_IP >> $wynik_s
+						cat $wynik_s
+						echo -e "\e[32mWynik skanowania zapisałem w pliku $wynik_s\e[0m"
+						wynik;	
+						} 
+						fi
+					}
+				else {
+					echo -e "\e[33mPodano błędny adres IP lub domenę !\e[0m"
+				}
+				fi
+			;;
 			"Skanowanie własnego IP")
 				if (($EUID)); then {
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 	
