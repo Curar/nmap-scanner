@@ -134,8 +134,8 @@ do {
 	echo -e "\e[32m${tablica_logo["0"]}\e[0m"
 	echo -e "\e[32mJakie skanowanie przeprowadzić ? :\e[0m"
 	opcje_wyboru=(
-		"Skanowanie - szybkie" 
-		"Skanowanie - głębokie" 
+		"Skanowanie lokalnych interfejsów - szybkie" 
+		"Skanowanie lokalnych interfejsów - głębokie" 
 		"Skanowanie IP lub domeny"
 		"Skanowanie własnego IP"
 		"Wykrywanie hostów w obecnej sieci LAN" 
@@ -146,7 +146,7 @@ do {
 	select opcja in "${opcje_wyboru[@]}"
 	do
 			case $opcja in
-			"Skanowanie - szybkie") 	
+			"Skanowanie lokalnych interfejsów - szybkie") 	
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"	
 				wykryj_ip;
@@ -200,7 +200,7 @@ do {
 				}
 				fi
 			;;
-			"Skanowanie - głębokie")
+			"Skanowanie lokalnych interfejsów - głębokie")
 				echo -e "\e[32mPracujesz jako :\e[0m"; whoami 
 				echo -e "\e[32mTwoje obecne IP : $IP\e[0m"
 				wykryj_ip;
